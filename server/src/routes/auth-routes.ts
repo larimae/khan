@@ -28,15 +28,15 @@ export const login = async (req: Request, res: Response) => {
     // Generate JWT token
     const token = jwt.sign(
       { id: user.id, username: user.username },
-      process.env.JWT_SECRET as string,
+      process.env.JWT_SECRET_KEY as string,
       { expiresIn: '1h' } // Token expiration time
     );
 
     // Return token to client
-    res.status(200).json({ token });
+    return res.status(200).json({ token });
   } catch (err) {
     console.error('Error during login:', err);
-    res.status(500).json({ message: 'An error occurred during login' });
+    return res.status(500).json({ message: 'An error occurred during login' });
   }
 };
 
