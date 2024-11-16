@@ -7,6 +7,7 @@ const retrieveTickets = async () => {
     const response = await fetch(
       '/api/tickets/',
       {
+        cache: "no-cache",
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${Auth.getToken()}`

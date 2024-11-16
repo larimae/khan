@@ -11,13 +11,13 @@ const login = async (userInfo: UserLogin) => {
       body: JSON.stringify(userInfo),
     });
 
-    const data = await response.json();
-
     if (!response.ok) {
-      throw new Error(data.message || 'Login failed, check credentials!');
+      const errorText = await response.text(); 
+      throw new Error(errorText || 'Login failed, check credentials!');
     }
 
-    // Assuming the server sends a token back, you can store it using your Auth utility
+    const data = await response.json();
+
     if (data.token) {
       localStorage.setItem('token', data.token);
     }

@@ -19,7 +19,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
   //   return res.status(401).json({ message: 'Token missing in Authorization header' });
   // }
 
-  jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET_KEY as string, (err, decoded) => {
     if (err) {
       console.error('Token verification failed:', err);
       return res.status(403).json({ message: 'Invalid or expired token' });
